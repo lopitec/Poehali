@@ -13,6 +13,7 @@
         {
             InitializeComponent();
         }
+        StorageService storageService = new StorageService();
 
         #endregion
 
@@ -36,7 +37,8 @@
 
         private void buttonSaveList_Click(object sender, EventArgs e)
         {
-            using (XmlWriter xmlWriter = XmlWriter.Create("C:/TestProjects/workers.xml"))
+            storageService.WriteData(listBox1, "C:/TestProjects/workers.xml");
+            /* using (XmlWriter xmlWriter = XmlWriter.Create("C:/TestProjects/workers.xml"))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("workers");
@@ -56,7 +58,7 @@
 
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndDocument();
-            }
+            }*/
         }
 
         private void ListBox1SelectedIndexChanged(object sender, EventArgs e)
@@ -82,7 +84,8 @@
 
         private void buttonReadXml_Click(object sender, EventArgs e)
         {
-            using (XmlReader reader = XmlReader.Create("C:/TestProjects/workers.xml"))
+            storageService.ReadData(listBox1, "C:/TestProjects/workers.xml");
+            /* using (XmlReader reader = XmlReader.Create("C:/TestProjects/workers.xml"))
             {
                 while (reader.Read())
                 {
@@ -98,8 +101,8 @@
                         }
                     }
                 }
-            }
-         }
+            } */
+        }
      }
 }
     
