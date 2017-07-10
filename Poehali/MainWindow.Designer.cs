@@ -39,6 +39,8 @@
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonReadXml = new System.Windows.Forms.Button();
             this.buttonSaveList = new System.Windows.Forms.Button();
+            this.buttonSerialize = new System.Windows.Forms.Button();
+            this.buttonDeserialize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeight)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +106,7 @@
             // 
             // buttonReadXml
             // 
-            this.buttonReadXml.Location = new System.Drawing.Point(845, 278);
+            this.buttonReadXml.Location = new System.Drawing.Point(845, 251);
             this.buttonReadXml.Name = "buttonReadXml";
             this.buttonReadXml.Size = new System.Drawing.Size(185, 50);
             this.buttonReadXml.TabIndex = 9;
@@ -123,11 +125,33 @@
             this.buttonSaveList.UseVisualStyleBackColor = true;
             this.buttonSaveList.Click += new System.EventHandler(this.buttonSaveList_Click);
             // 
+            // buttonSerialize
+            // 
+            this.buttonSerialize.Location = new System.Drawing.Point(845, 344);
+            this.buttonSerialize.Name = "buttonSerialize";
+            this.buttonSerialize.Size = new System.Drawing.Size(185, 44);
+            this.buttonSerialize.TabIndex = 11;
+            this.buttonSerialize.Text = "Serialize";
+            this.buttonSerialize.UseVisualStyleBackColor = true;
+            this.buttonSerialize.Click += new System.EventHandler(this.buttonSerialize_Click);
+            // 
+            // buttonDeserialize
+            // 
+            this.buttonDeserialize.Location = new System.Drawing.Point(845, 420);
+            this.buttonDeserialize.Name = "buttonDeserialize";
+            this.buttonDeserialize.Size = new System.Drawing.Size(185, 47);
+            this.buttonDeserialize.TabIndex = 12;
+            this.buttonDeserialize.Text = "Deserialize";
+            this.buttonDeserialize.UseVisualStyleBackColor = true;
+            this.buttonDeserialize.Click += new System.EventHandler(this.buttonDeserialize_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 679);
+            this.Controls.Add(this.buttonDeserialize);
+            this.Controls.Add(this.buttonSerialize);
             this.Controls.Add(this.buttonSaveList);
             this.Controls.Add(this.buttonReadXml);
             this.Controls.Add(this.buttonRemove);
@@ -157,6 +181,8 @@
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonReadXml;
         private System.Windows.Forms.Button buttonSaveList;
+        private System.Windows.Forms.Button buttonSerialize;
+        private System.Windows.Forms.Button buttonDeserialize;
     }
 }
 

@@ -1,27 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
 
 namespace Poehali
 {
-    using System.Runtime.CompilerServices;
+    using System.Runtime.Serialization;
 
+    [DataContract]
     internal class Worker
     {
+        [DataMember]
         public string Name
         {
             get;
             set;
         }
 
+        [DataMember]
         public int Weight
         {
             get;
             set;
         }
 
+        [DataMember]
         public int Age
         {
             get;

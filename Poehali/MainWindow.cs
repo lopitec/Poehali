@@ -13,7 +13,8 @@
         {
             InitializeComponent();
         }
-        StorageService storageService = new StorageService();
+        IStorageService storageService = new Storagestriming();
+        IStorageService datacontracting = new DataContracting();
 
         #endregion
 
@@ -37,28 +38,7 @@
 
         private void buttonSaveList_Click(object sender, EventArgs e)
         {
-            storageService.WriteData(listBox1, "C:/TestProjects/workers.xml");
-            /* using (XmlWriter xmlWriter = XmlWriter.Create("C:/TestProjects/workers.xml"))
-            {
-                xmlWriter.WriteStartDocument();
-                xmlWriter.WriteStartElement("workers");
-
-                foreach (object workerobj in listBox1.Items)
-                {
-                    Worker worker = (Worker)workerobj;
-                    if (worker == null)
-                        continue;
-
-                    xmlWriter.WriteStartElement("worker");
-                    xmlWriter.WriteAttributeString("name", worker.Name);
-                    xmlWriter.WriteAttributeString("age", worker.Age.ToString());
-                    xmlWriter.WriteAttributeString("weight", worker.Weight.ToString());
-                    xmlWriter.WriteEndElement();
-                }
-
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteEndDocument();
-            }*/
+            storageService.WriteData(listBox1.Items, "C:/TestProjects/workers.xml");
         }
 
         private void ListBox1SelectedIndexChanged(object sender, EventArgs e)
@@ -84,25 +64,28 @@
 
         private void buttonReadXml_Click(object sender, EventArgs e)
         {
-            storageService.ReadData(listBox1, "C:/TestProjects/workers.xml");
-            /* using (XmlReader reader = XmlReader.Create("C:/TestProjects/workers.xml"))
+            var workers = storageService.ReadData("C:/TestProjects/workers.xml");
+            foreach (var worker in workers)
             {
-                while (reader.Read())
-                {
-                    if (reader.NodeType == XmlNodeType.Element)
-                    {
-                        if (reader.HasAttributes)
-                        {
-                            int weight = int.Parse(reader.GetAttribute("weight"));
-                            int age = int.Parse(reader.GetAttribute("age"));
-                            string name = reader.GetAttribute("name");
-                            var worker = new Worker(name, weight, age);
-                            listBox1.Items.Add(worker);
-                        }
-                    }
-                }
-            } */
+                listBox1.Items.Add(worker); 
+            }
+             
         }
-     }
+
+        private void buttonSerialize_Click(object sender, EventArgs e)
+        {
+            datacontracting.WriteData(listBox1.Items, "C:/TestProjects/workerdatacontract.xml");
+        }
+
+        
+        private void buttonDeserialize_Click(object sender, EventArgs e)
+        {
+            var workers = datacontracting.ReadData("C:/TestProjects/workerdatacontract.xml");
+            foreach (var worker in workers)
+            {
+                listBox1.Items.Add(worker);
+            }
+        }
+    }
 }
     

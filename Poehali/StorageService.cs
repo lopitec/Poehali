@@ -2,20 +2,24 @@
 
 namespace Poehali
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.IO;
     using System.Windows.Forms;
     using System.Xml;
+    
 
-    internal class StorageService
+    internal class Storagestriming: IStorageService
+      
     {
-        public void WriteData(ListBox listBox1, string filename)
+        public void WriteData(ICollection workers, string filename)
         {
             using (XmlWriter xmlWriter = XmlWriter.Create(filename))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("workers");
 
-                foreach (object workerobj in listBox1.Items)
+                foreach (object workerobj in workers)
                 {
                     Worker worker = (Worker)workerobj;
                     if (worker == null)
@@ -32,12 +36,13 @@ namespace Poehali
             }
         }
 
-        public void ReadData(ListBox listBox1, string filename)
+        public ICollection ReadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return;
+                return null;
             }
+            var workers = new ArrayList();
 
             using (XmlReader reader = XmlReader.Create(filename))
             { 
@@ -51,11 +56,13 @@ namespace Poehali
                             int age = int.Parse(reader.GetAttribute("age"));
                             string name = reader.GetAttribute("name");
                             var worker = new Worker(name, weight, age);
-                            listBox1.Items.Add(worker);
+                            workers.Add(worker);
                         }
                     }
                 }
             }
+
+            return workers;
         } 
     }
 }
